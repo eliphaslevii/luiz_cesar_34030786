@@ -28,6 +28,7 @@ const arrayPath = [
   "./assets/vaca.png",
   "./assets/veado.png",
   "./assets/bangu777.png",
+
 ];
 
 let currentIndex = 0;
@@ -38,6 +39,7 @@ let logoBicho = document.getElementById("logoBicho");
 let saldo = parseFloat(saldoSelector.value);
 let aposta = parseFloat(apostaSelector.value);
 let audio = document.getElementById("audios");
+let chanceDeIguais = 2.5;
 
 function winImageEffect() {
   document.getElementById("img1").classList.add("animation_effect");
@@ -58,7 +60,6 @@ function percorreArray(array) {
       arrayEmbaralhado[i],
     ];
   }
-  const chanceDeIguais = 2.5;
 
   const numeroAleatorio = Math.random() * 100;
 
@@ -171,6 +172,15 @@ function spinRoleta() {
 
     const numeroDeContagens = 15;
 
+    if(apostaSelector.value <= 5){
+      chanceDeIguais = 3;
+    }
+    else if(apostaSelector.value >= 5.1 &&  apostaSelector.value <= 25){
+      chanceDeIguais = 2.5;
+    }
+    else{
+      chanceDeIguais = 2;
+    }
     function EmbaralharImgs() {
       percorreArray();
       contador++;
@@ -199,14 +209,13 @@ function spinRoleta() {
     );
   }
 }
-function openModal() { 
-    const modal = document.getElementById('modal');
-    modal.style.display = "block";
 
-
- }
- window.addEventListener("click", function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+function openModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "block";
+}
+window.addEventListener("click", function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 });
