@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/index.css" rel="stylesheet" />
+    <style></style>
+  </head>
+  <header></header>
+  <body>
+    <main>
+      <section>
+        <div class="container">
+          <img src="./assets/logo.png" id="logoBicho" class="logo" />
+          <div class="card">
+            <div class="column">
+              <img id="img1" class="img_spin" src="" />
+            </div>
+            <div class="column">
+              <img id="img2" class="img_spin" src="" />
+            </div>
+            <div class="column">
+              <img id="img3" class="img_spin" src="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="column_input">
+              <label>Saldo:</label>
+              <input id="saldo" value="500" readonly />
+              <label>Aposta:</label>
+
+              <input type="number" name="aposta" id="aposta" value="" />
+            </div>
+          </div>
+
+          <button class="button_spin" id="spin" onclick="spinRoleta()">
+            Apostar
+          </button>
+        </div>
+        <script>
+          const arrayPath = [
+            "./assets/aguia.png",
+            "./assets/burro.png",
+            "./assets/avestruz.png",
+            "./assets/borboleta.png",
+            "./assets/cabra.png",
+            "./assets/cachorro.png",
+            "./assets/camelo.png",
+            "./assets/carneiro.png",
+            "./assets/cavalo.png",
+            "./assets/cobra.png",
+            "./assets/coelho.png",
+            "./assets/elefante.png",
+            "./assets/galo.png",
+            "./assets/gato.png",
+            "./assets/jacare.png",
+            "./assets/leao.png",
+            "./assets/macaco.png",
+            "./assets/pavao.png",
+            "./assets/peru.png",
+            "./assets/porco.png",
+            "./assets/tigre.png",
+            "./assets/touro.png",
+            "./assets/urso.png",
+            "./assets/vaca.png",
+            "./assets/veado.png",
+            "./assets/aguia.png",
+            "./assets/burro.png",
+            "./assets/avestruz.png",
+            "./assets/borboleta.png",
+            "./assets/cabra.png",
+            "./assets/cachorro.png",
+            "./assets/camelo.png",
+            "./assets/carneiro.png",
+            "./assets/cavalo.png",
+            "./assets/cobra.png",
+            "./assets/coelho.png",
+            "./assets/elefante.png",
+            "./assets/galo.png",
+            "./assets/gato.png",
+            "./assets/jacare.png",
+            "./assets/leao.png",
+            "./assets/macaco.png",
+            "./assets/pavao.png",
+            "./assets/peru.png",
+            "./assets/porco.png",
+            "./assets/tigre.png",
+            "./assets/touro.png",
+            "./assets/urso.png",
+            "./assets/vaca.png",
+            "./assets/veado.png",
+            "./assets/aguia.png",
+            "./assets/burro.png",
+            "./assets/avestruz.png",
+            "./assets/borboleta.png",
+            "./assets/cabra.png",
+            "./assets/cachorro.png",
+            "./assets/camelo.png",
+            "./assets/carneiro.png",
+            "./assets/cavalo.png",
+            "./assets/cobra.png",
+            "./assets/coelho.png",
+            "./assets/elefante.png",
+            "./assets/galo.png",
+            "./assets/gato.png",
+            "./assets/jacare.png",
+            "./assets/leao.png",
+            "./assets/macaco.png",
+            "./assets/pavao.png",
+            "./assets/peru.png",
+            "./assets/porco.png",
+            "./assets/tigre.png",
+            "./assets/touro.png",
+            "./assets/urso.png",
+            "./assets/vaca.png",
+            "./assets/veado.png",
+            "./assets/bangu777.png",
+            
+          ];
+
+          let currentIndex = 0;
+          let contador = 0;
+          let saldoSelector = document.getElementById("saldo");
+          let apostaSelector = document.getElementById("aposta");
+          let logoBicho = document.getElementById("logoBicho");
+
+          let saldo = parseFloat(saldoSelector.value);
+          let aposta = parseInt(apostaSelector.value);
+
+          function percorreArray(array) {
+            const arrayEmbaralhado = arrayPath;
+            for (let i = arrayEmbaralhado.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [arrayEmbaralhado[i], arrayEmbaralhado[j]] = [
+                arrayEmbaralhado[j],
+                arrayEmbaralhado[i],
+              ];
+            }
+            const imageIds = ["img1", "img2", "img3"];
+
+            for (let i = 0; i < imageIds.length; i++) {
+              const imgElement = document.getElementById(imageIds[i]);
+              if (imgElement) {
+                imgElement.src = arrayEmbaralhado[currentIndex];
+                currentIndex = (currentIndex + 1) % arrayEmbaralhado.length;
+              }
+            }
+
+            let img1 = document.getElementById("img1").src;
+            let img2 = document.getElementById("img2").src;
+            let img3 = document.getElementById("img3").src;
+
+            img1 = img1.replace(/^file:\/\/.*?\/assets\//, "/assets/");
+            img2 = img2.replace(/^file:\/\/.*?\/assets\//, "/assets/");
+            img3 = img3.replace(/^file:\/\/.*?\/assets\//, "/assets/");
+
+            console.log(img1, img2, img3);
+            if (img1 === img2 && img1 === img3) {
+              let resultado = saldo + aposta * 2.5;
+              saldo = resultado;
+              document.getElementById("saldo").value = saldo;
+              logoBicho.src = "./assets/logo_2.5x.png";
+              contador = 20;
+              if (
+                img1 === "./assets/bangu777.png" &&
+                img2 === "./assets/bangu777.png" &&
+                img3 === "./assets/bangu777.png"
+              ) {
+                let resultado_777 = saldo + aposta * 15;
+                saldo = resultado_777;
+                document.getElementById("saldo").value = saldo;
+                logoBicho.src = "./assets/logo_15x.png";
+                contador = 20;
+              } else if (
+                img1 === "./assets/coelho.png" &&
+                img2 === "./assets/coelho.png" &&
+                img3 === "./assets/coelho.png"
+              ) {
+                let resultado_coelho = saldo + aposta * 7;
+                saldo = resultado_coelho;
+                document.getElementById("saldo").value = saldo;
+                logoBicho.src = "./assets/logo_7x.png";
+                contador = 20;
+              }
+            } else if (contador == 14) {
+              logoBicho.src = "./assets/logo_lose.png";
+            }
+          }
+
+          function spinRoleta() {
+            contador = 0;
+
+            logoBicho.src = "./assets/logo.png";
+
+            if (
+              parseFloat(saldoSelector.value) >=
+              parseFloat(apostaSelector.value)
+            ) {
+              let novoSaldo =
+                parseFloat(saldoSelector.value) -
+                parseFloat(apostaSelector.value);
+              saldoSelector.value = novoSaldo;
+
+              const numeroDeContagens = 15;
+
+              function shuffleImages() {
+                percorreArray();
+                contador++;
+
+                if (contador >= numeroDeContagens) {
+                  document.getElementById("spin").classList.remove("hidden");
+                  document.getElementById("spin").classList.add("show");
+                } else {
+                  document.getElementById("spin").classList.remove("show");
+                  document.getElementById("spin").classList.add("hidden");
+                }
+                if (contador < numeroDeContagens) {
+                  setTimeout(shuffleImages, 200);
+                }
+              }
+              shuffleImages();
+            } else if (
+              parseFloat(apostaSelector.value) <= 0 ||
+              apostaSelector.value === ""
+            ) {
+              alert(
+                "Você está tentando apostar 0 Doutor Castor não aceita vacilagem!"
+              );
+            } else {
+              alert(
+                "Você não tem saldo para apostar, seu saldo é de R$ " +
+                  saldoSelector.value
+              );
+            }
+          }
+        </script>
+      </section>
+    </main>
+  </body>
+</html>
