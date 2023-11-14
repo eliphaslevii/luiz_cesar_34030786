@@ -1,8 +1,11 @@
 <!-- ========== 31/10 Criação index.css, index.html ========== -->
-<!-- ========== 01/11 Criação do script JS ========== -->
+<!-- ========== 01/11 Criação do script JS index.js ========== -->
 <!-- ========== 01/11 Push to GIT ========== -->
 <!-- ========== 01/11 Tocar Audio win/lose/15x ========== -->
 <!-- ========== 01/11 Regras do jogo ========== -->
+<!-- ========== 14/11 Inclusão do booster de chances/ propina ========== -->
+<!-- ========== 14/11 Inclusão da função Sacar ========== -->
+<!-- ========== 14/11 Inclusão da função Agiota ========== -->
 
 <!DOCTYPE html>
 <html>
@@ -33,26 +36,31 @@
           <div class="row">
             <div class="column_input">
               <label>Saldo:</label>
-              <input id="saldo" value="" readonly type="number" />
+              <input id="saldo" value="" class="input_jackpot" readonly type="number" />
               <label>Aposta:</label>
-
-              <input type="number" name="aposta" id="aposta" value="" />
+              <input type="number" class="input_jackpot" name="aposta" id="aposta" value="" />
+           
             </div>
           </div>
           <div class="row">
             <button class="button_spin" id="spin" onclick="spinRoleta()">
               Apostar
             </button>
-            <button class="button_spin" id="spin" onclick="openModal()">
+            <button class="button_spin" id="rulles" onclick="openModal()">
               Regras
+            </button>
+            <button class="button_spin" id="buttonSamango" style="font-size: 18px !important;" onclick="openModalSamango()">
+              Cafézinho
+            </button>
+            <button class="button_spin" id="" onclick="openModalSacar()">
+              Sacar
             </button>
           </div>
           <div class="modal" id="modal">
             <div class="modal-content">
               <div class="row">
                 <div class="column">
-                  <p><strong>Dr Castor:</strong> O jogo é o seguinte, são 26 numeros sendo 1 coringa que é o BANGU. Pagamento na hora, ganhou levou. cada rodada faz 15 giros na roleta. </p>
-                  
+                  <p><strong>Dr Castor:</strong> O jogo é o seguinte, são 26 numeros sendo 1 coringa que é o BANGU. Pode sacar na hora, ganhou levou. cada rodada faz 15 giros na roleta. </p>
                 </div>
                 <div class="column">
                   <table>
@@ -65,40 +73,107 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>5%</td>
+                        <td>2.5%</td>
                         <td>2.5x</td>
                         <td>Comum</td>
                       </tr>
                       <tr>
-                        <td>5%</td>
+                        <td>2.5%</td>
                         <td>7x</td>
                         <td>Coelho</td>
                       </tr>
                       <tr>
-                        <td>5%</td>
+                        <td>2.5%</td>
                         <td>5x</td>
                         <td>Cachorro</td>
                       </tr>
                       <tr>
-                        <td>5%</td>
+                        <td>2.5%</td>
                         <td>15x</td>
                         <td>Escudo bangu</td>
                       </tr>
                     </tbody>
                   </table>
-
-
                 </div>
               </div>
-
               <div class="row">
                 <img src="./assets/drcastor.jpg" />
+              </div>
+            </div>
+          </div>
+          <div class="modal" id="modalSamango">
+            <div class="modal-content">
+              <div class="row">
+                <div class="column" style="border:1px solid black">
+                  <img src="./assets/samango.png">
+                  <p>O samango Bezerra e o capitão Lacerda solicitam sua contribuição para tomar um café. Pagando você tem o privilégio de aumentar suas chances por 5 rodadas.</p>
+                </div>
+                <div class="column" style="border:1px solid black">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Café</th>
+                        <th>%</th>
+                        <th>PM Arregado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>R$ 20</td>
+                        <td>3.5%</td>
+                        <td>Soldado Leite</td>
+                      </tr>
+                      <tr>
+                        <td>R$ 50</td>
+                        <td>4.5%</td>
+                        <td>Samango Bezerra</td>
+                      </tr>
+                      <tr>
+                        <td>R$ 90</td>
+                        <td>5.5%</td>
+                        <td>Cel. Lacerda</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+                <div class="row">
+                  <div class="column" >
+                    <input type="number" class="input_samango" id="propina" placeholder="Pagar Prop....">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column"> 
+                    <button onclick="pagarPropina()" class="button_samango">Pagar Cafézinho</button>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal" id="modal_sacar" >
+            <div class="modal-content">
+              <div class="row">
+                <div class="column">
+                  <img src="./assets/arma-bolsa.gif" style="width: 60%;" alt="">
+                </div>
+                <div class="column">
+                  <p>A tetéia do museu sacou!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal" id="modal_agiota">
+            <div class="modal-content">
+              <div class="row">
+                <div class="column">
+                  <img src="./assets/agiota.webp">
+                </div>
+
               </div>
               
             </div>
           </div>
         </div>
-        <script></script>
       </section>
     </main>
   </body>

@@ -40,7 +40,61 @@ let saldo = parseFloat(saldoSelector.value);
 let aposta = parseFloat(apostaSelector.value);
 let audio = document.getElementById("audios");
 let chanceDeIguais = 2.5;
+let propinaModal = document.getElementById("propina");
+let contadorCafe = 0;
+const buttonSamangos = document.getElementById("buttonSamango");
 
+function classButtonSamangoAdd(){
+  buttonSamangos.classList.remove("button_spin");
+  buttonSamangos.classList.add("button_samango_boost");
+}
+function classButtonSamangoRmv(){
+  buttonSamangos.classList.remove("button_samango_boost");
+  buttonSamangos.classList.add("button_spin");
+}
+function pagarPropina(){
+  
+  const valorPropinaModal = propinaModal.value;
+
+  const modalSamango = document.getElementById("modalSamango");
+
+  if(valorPropinaModal >= 20 && valorPropinaModal <50){
+
+    saldoSelector.value = saldoSelector.value - valorPropinaModal;
+    chanceDeIguais = 3.5;
+    modalSamango.style.display = "none";
+    buttonSamangos.textContent = "Boost 3.5%";
+    buttonSamangos.disabled = true;
+    classButtonSamangoAdd();
+  }
+  
+  else if(valorPropinaModal < 20 ){
+    
+    alert("Ta querendo arrumar uma com o Lacerda e sua turma ? Te orienta moluscão o arrego mínimo é R$ 20.");
+    modalSamango.style.display = "none";
+    buttonSamangos.disabled = true;
+
+  }
+  else if(valorPropinaModal >=50 && valorPropinaModal <=89){
+
+    saldoSelector.value = saldoSelector.value - valorPropinaModal;
+    chanceDeIguais = 4.5;
+    modalSamango.style.display = "none";
+    buttonSamangos.textContent = "Boost 4.5%";
+    buttonSamangos.disabled = true;
+    classButtonSamangoAdd();
+  }
+  else if(valorPropinaModal >= 90){
+    saldoSelector.value = saldoSelector.value - valorPropinaModal;
+    chanceDeIguais = 5.5;
+    modalSamango.style.display = "none";
+    buttonSamangos.textContent = "Boost 5.5%";
+    buttonSamangos.disabled = true;
+    classButtonSamangoAdd();
+
+  }
+  
+}
 function winImageEffect() {
   document.getElementById("img1").classList.add("animation_effect");
   document.getElementById("img2").classList.add("animation_effect");
@@ -55,10 +109,7 @@ function percorreArray(array) {
   const arrayEmbaralhado = arrayPath;
   for (let i = arrayEmbaralhado.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arrayEmbaralhado[i], arrayEmbaralhado[j]] = [
-      arrayEmbaralhado[j],
-      arrayEmbaralhado[i],
-    ];
+    [arrayEmbaralhado[i], arrayEmbaralhado[j]] = [arrayEmbaralhado[j],arrayEmbaralhado[i],];
   }
 
   const numeroAleatorio = Math.random() * 100;
@@ -103,7 +154,7 @@ function percorreArray(array) {
     saldoSelector.value = resultado;
 
     logoBicho.src = "./assets/logo_2.5x.png";
-
+    contadorCafe++;
     contador = 20;
   } else if (
     img1 === "/assets/bangu777.png" &&
@@ -120,6 +171,10 @@ function percorreArray(array) {
 
     logoBicho.src = "./assets/logo_15x.png";
     contador = 20;
+    contadorCafe++;
+    if(saldoSelector.value == 0){
+      openModalAgiota();
+    }
   } else if (
     img1 === "/assets/cachorro.png" &&
     img2 === "/assets/cachorro.png" &&
@@ -136,6 +191,10 @@ function percorreArray(array) {
 
     logoBicho.src = "./assets/logo_5x.png";
     contador = 20;
+    contadorCafe++;
+    if(saldoSelector.value == 0){
+      openModalAgiota();
+    }
   } else if (
     img1 === "/assets/coelho.png" &&
     img2 === "/assets/coelho.png" &&
@@ -149,38 +208,45 @@ function percorreArray(array) {
       parseFloat(saldoSelector.value) +
       parseFloat(apostaSelector.value) * parseFloat(7);
     saldoSelector.value = resultado;
-
     logoBicho.src = "./assets/logo_7x.png";
     contador = 20;
+    contadorCafe++;
+    if(saldoSelector.value == 0){
+      openModalAgiota();
+    }
   } else if (contador == 14) {
     audio.src = "./assets/fail.mp3";
     audio.playbackRate = 4;
     audio.play();
     logoBicho.src = "./assets/logo_lose.png";
+    contadorCafe++;
+    if(saldoSelector.value == 0){
+      openModalAgiota();
+    }
   }
 }
-
 function spinRoleta() {
   contador = 0;
+
+  if(contadorCafe == 5){
+    chanceDeIguais = 2.5;
+    contadorCafe = 0;
+    classButtonSamangoRmv();
+    buttonSamangos.textContent = "Cafézinho";
+    buttonSamangos.disabled = false;
+
+  }
 
   logoBicho.src = "./assets/logo.png";
   winImageRemoveEffect();
   if (parseFloat(saldoSelector.value) >= parseFloat(apostaSelector.value)) {
+
     let novoSaldo =
       parseFloat(saldoSelector.value) - parseFloat(apostaSelector.value);
     saldoSelector.value = novoSaldo;
 
     const numeroDeContagens = 15;
 
-    if(apostaSelector.value <= 5){
-      chanceDeIguais = 3;
-    }
-    else if(apostaSelector.value >= 5.1 &&  apostaSelector.value <= 25){
-      chanceDeIguais = 2.5;
-    }
-    else{
-      chanceDeIguais = 2;
-    }
     function EmbaralharImgs() {
       percorreArray();
       contador++;
@@ -209,13 +275,39 @@ function spinRoleta() {
     );
   }
 }
-
 function openModal() {
   const modal = document.getElementById("modal");
   modal.style.display = "block";
 }
+function openModalSamango() {
+  const modalSamango = document.getElementById("modalSamango");
+  modalSamango.style.display = "block";
+}
+function openModalSacar(){
+  const modalSacar = document.getElementById("modal_sacar");
+  modalSacar.style.display = "block";
+
+}
+function openModalAgiota() {
+  const modalAgiota = document.getElementById("modal_agiota");
+
+  modalAgiota.style.display = "block";
+
+  setTimeout(function () {
+    modalAgiota.style.display = "none";
+  }, 5000);
+}
 window.addEventListener("click", function (event) {
+  const modalSamango = document.getElementById("modalSamango");
+  const modalSacar = document.getElementById("modal_sacar");
+
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+  else if(event.target == modalSamango){
+    modalSamango.style.display = "none";
+  }
+  else if(event.target == modalSacar){
+    modalSacar.style.display = "none";
   }
 });
