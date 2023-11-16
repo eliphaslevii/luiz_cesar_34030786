@@ -283,20 +283,7 @@ function openModalSamango() {
   const modalSamango = document.getElementById("modalSamango");
   modalSamango.style.display = "block";
 }
-function openModalSacar(){
-  const modalSacar = document.getElementById("modal_sacar");
-  modalSacar.style.display = "block";
 
-}
-function openModalAgiota() {
-  const modalAgiota = document.getElementById("modal_agiota");
-
-  modalAgiota.style.display = "block";
-
-  setTimeout(function () {
-    modalAgiota.style.display = "none";
-  }, 5000);
-}
 window.addEventListener("click", function (event) {
   const modalSamango = document.getElementById("modalSamango");
   const modalSacar = document.getElementById("modal_sacar");
@@ -306,8 +293,5 @@ window.addEventListener("click", function (event) {
   }
   else if(event.target == modalSamango){
     modalSamango.style.display = "none";
-  }
-  else if(event.target == modalSacar){
-    modalSacar.style.display = "none";
   }
 });

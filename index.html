@@ -4,8 +4,8 @@
 <!-- ========== 01/11 Tocar Audio win/lose/15x ========== -->
 <!-- ========== 01/11 Regras do jogo ========== -->
 <!-- ========== 14/11 Inclusão do booster de chances/ propina ========== -->
-<!-- ========== 14/11 Inclusão da função Sacar ========== -->
-<!-- ========== 14/11 Inclusão da função Agiota ========== -->
+<!-- ========== 14/11 Remoção da função Agiota ========== -->
+<!-- ========== 14/11 Remoção da função Agiota ========== -->
 
 <!DOCTYPE html>
 <html>
@@ -53,9 +53,7 @@
             <button class="button_spin" id="buttonSamango" style="font-size: 18px !important;" onclick="openModalSamango()">
               Cafézinho
             </button>
-            <button class="button_spin" id="" onclick="openModalSacar()">
-              Sacar
-            </button>
+
           </div>
           <div class="modal" id="modal">
             <div class="modal-content">
@@ -105,11 +103,11 @@
           <div class="modal" id="modalSamango">
             <div class="modal-content">
               <div class="row">
-                <div class="column" style="border:1px solid black">
+                <div class="column" >
                   <img src="./assets/samango.png">
                   <p>O samango Bezerra e o capitão Lacerda solicitam sua contribuição para tomar um café. Pagando você tem o privilégio de aumentar suas chances por 5 rodadas.</p>
                 </div>
-                <div class="column" style="border:1px solid black">
+                <div class="column">
                   <table>
                     <thead>
                       <tr>
@@ -149,29 +147,6 @@
 
                   </div>
                 </div>
-            </div>
-          </div>
-          <div class="modal" id="modal_sacar" >
-            <div class="modal-content">
-              <div class="row">
-                <div class="column">
-                  <img src="./assets/arma-bolsa.gif" style="width: 60%;" alt="">
-                </div>
-                <div class="column">
-                  <p>A tetéia do museu sacou!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal" id="modal_agiota">
-            <div class="modal-content">
-              <div class="row">
-                <div class="column">
-                  <img src="./assets/agiota.webp">
-                </div>
-
-              </div>
-              
             </div>
           </div>
         </div>
